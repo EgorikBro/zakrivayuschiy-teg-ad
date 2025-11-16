@@ -9,3 +9,101 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
+
+/* Animations for heart icon */
+
+/* Heart scaling animation */
+@keyframes heart-scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.25);
+  }
+}
+
+/* Sparks animation */
+@keyframes sparks-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Heart icon styles */
+.like-icon {
+  width: 39px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.like-icon .sparks {
+  opacity: 0;
+}
+
+/* Hover state - fill core and main-body with contour color */
+.like-icon:hover .core {
+  fill: var(--contour-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:hover .main-body {
+  fill: var(--contour-color);
+  transition: fill 0.3s linear 0.05s;
+}
+
+/* When leaving hover */
+.like-icon .core {
+  fill: none;
+  transition: fill 0.3s linear 0.03s;
+}
+
+.like-icon .main-body {
+  fill: none;
+  transition: fill 0.3s linear;
+}
+
+/* Active state - fill with red */
+.like-icon:active .core {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:active .main-body {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0.05s;
+}
+
+/* Liked state (when is-liked class is added) */
+.like-icon.is-liked .core {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0.05s;
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--animation-fill-color);
+  transition: fill 0.3s linear 0.06s;
+}
+
+/* Heart scaling when liked */
+.like-icon.is-liked .heart {
+  animation: heart-scale 0.3s ease-in 0.1s 1 alternate;
+  transform-origin: center;
+}
+
+/* Sparks when liked */
+.like-icon.is-liked .sparks {
+  animation: sparks-animation 0.3s ease-in 0.3s 1 alternate;
+}
+
+/* When unliked - return contour quickly */
+.like-icon .contour {
+  transition: fill 0.1s linear;
+}
